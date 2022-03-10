@@ -54,9 +54,10 @@ workflows:
       # version will be published or if publishing should
       # be skipped.
       # e.g. [semver:patch] will cause a patch version to be published.
-      - orb-tools/dev-promote-prod-from-commit-subject:
+      - orb-tools/dev-promote-from-commit-subject:
           orb-name: ecosia/go
           context: orb-publishing
+          add-pr-comment: false
           fail-if-semver-not-indicated: true
           requires:
             - int-test-cimg-go

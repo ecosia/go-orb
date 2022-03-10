@@ -170,6 +170,8 @@ jobs:
           file-output: test-output.json
       - go/create-junit-xml:
           junit-output: ./_results/unit-tests.xml
+      - go/create-coverage-report:
+          coverage-output: ./_results/coverage.html
       - store_artifacts:
           path: ./_results/
       - store_test_results:

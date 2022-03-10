@@ -162,6 +162,6 @@ jobs:
           key: "integration"
       - go/mod-download
       - go/test:
-          skip-tests: "validator"
+          skip-packages: "validator"
       - go/save-cache:
           key: "integration"

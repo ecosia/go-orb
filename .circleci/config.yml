@@ -162,7 +162,7 @@ jobs:
           key: "integration"
       - go/mod-download
       - go/test:
-          packages: $(go list ./... | grep -v /proto)
-          coverpkg: $(go list ./... | grep -v /proto)
+          packages: $(go list ./... | grep -v /validator)
+          coverpkg: $(go list ./... | grep -v /validator)
       - go/save-cache:
           key: "integration"

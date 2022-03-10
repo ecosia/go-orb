@@ -2,7 +2,7 @@ description: |
   Runs 'go test ./...' but includes extensive parameterization for finer tuning
 parameters:
   packages:
-    description: Import tests to run, by path glob.
+    description: Import tests to run, by go list path glob.
     type: string
     default: "./..."
   race:
@@ -39,7 +39,7 @@ parameters:
       flag to set the coverage mode
       (the go default is: "set", unless -race is enabled, in which case the go default is "atomic")
     type: enum
-    enum: [ "set", "count", "atomic" ]
+    enum: ["set", "count", "atomic"]
     default: "set"
   verbose:
     description: log all tests as they are run. Also print all text from Log and Logf calls even if the test succeeds.
@@ -51,11 +51,23 @@ parameters:
       Apply coverage analysis in each test to packages matching the patterns.
       (Sets -cover.)
     type: string
-    default: "./..."
+    default: ""
+  json:
+    description: |
+      Output to json.
+    type: boolean
+    default: false
+  file-output:
+    description: |
+      Write the output of `go test` to a file
+    type: string
+    default: ""
 steps:
   - run:
+      name: "go test"
       command: >-
         go test
+        <<parameters.packages>>
         <<# parameters.race >>-race<</ parameters.race >>
         -count=<<parameters.count>>
         -coverprofile=<<parameters.coverprofile>>
@@ -64,6 +76,6 @@ steps:
         -p <<parameters.parallel>>
         -covermode=<<parameters.covermode>>
         <<# parameters.verbose >>-v<</ parameters.verbose >>
-        <<parameters.packages>>
-        -coverpkg=<<parameters.coverpkg>>
-      name: "go test"
+        <<# parameters.json>>-json<</ parameters.json>>
+        <<# parameters.coverpkg>>-coverpkg=<<parameters.coverpkg>><</ parameters.coverpkg>>
+        <<# parameters.file-output>>| tee <<parameters.file-output>><</ parameters.file-output>>

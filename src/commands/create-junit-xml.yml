@@ -1,0 +1,16 @@
+description: |
+  Create a JUnit XML report using gotestsum
+parameters:
+  test-results:
+    description: Source file to generate the JUnit XML report
+    type: string
+    default: "test-output.json"
+  junit-output:
+    description: Output file for the JUnit XML report
+    type: string
+    default: "unit-tests.xml"
+steps:
+  - run:
+      name: "create Junit XML"
+      command: >-
+        gotestsum --junitfile <<parameters.junit-output>> --raw-command -- cat <<parameters.test-results>>

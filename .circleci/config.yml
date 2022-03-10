@@ -148,3 +148,18 @@ jobs:
       - go/install:
           version: 1.16.4
       - run: go version && go build ./...
+  int-test-skip-tests:
+    executor:
+      name: go/default
+      tag: "1.13"
+    steps:
+      - run:
+          name: "Check out sample project."
+          command: git clone https://github.com/pbabbicola/circleci-demo-go.git ~/project
+      - go/load-cache:
+          key: "integration"
+      - go/mod-download
+      - go/test:
+          skip-tests: "validator"
+      - go/save-cache:
+          key: "integration"

@@ -46,6 +46,7 @@ workflows:
       - int-test-macos-executor
       - int-test-vm-linux
       - int-test-dirty-cache
+      - int-test-skip-tests
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -67,6 +68,7 @@ workflows:
             - int-test-macos-executor
             - int-test-vm-linux
             - int-test-dirty-cache
+            - int-test-skip-tests
           filters:
             branches:
               only: master

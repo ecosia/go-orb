@@ -60,8 +60,8 @@ parameters:
   file-output:
     description: |
       Write the output of `go test` to a file
-    type: boolean
-    default: false
+    type: string
+    default: ""
 steps:
   - run:
       name: "go test"
@@ -78,4 +78,4 @@ steps:
         <<# parameters.verbose >>-v<</ parameters.verbose >>
         <<# parameters.json>>-json<</ parameters.json>>
         <<# parameters.coverpkg>>-coverpkg=<<parameters.coverpkg>><</ parameters.coverpkg>>
-        <<# parameters.file-output>>| tee <<parameters.file-output>><</ parameters.file-output>> 
+        <<# parameters.file-output>>| tee <<parameters.file-output>><</ parameters.file-output>>

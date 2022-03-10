@@ -61,10 +61,12 @@ parameters:
     description: |
       Disable testing certain packages. You can use a grep regex here.
     type: string
+    default: ""
   cover:
     description: |
       Enable cover without specifying cover packages. Will use the same as the tested packages.
     type: boolean
+    default: false
 steps:
   - run:
       command: >-

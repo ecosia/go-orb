@@ -1,0 +1,16 @@
+description: |
+  Create a HTML coverage report
+parameters:
+  coverage-results:
+    description: Source file to generate the HTML coverage report
+    type: string
+    default: "cover-source.out"
+  coverage-output:
+    description: Output file for the HTML coverage report
+    type: string
+    default: "coverage.html"
+steps:
+  - run:
+      name: "create Junit XML"
+      command: >-
+        go tool cover -html=<<parameters.coverage-results>> -o <<parameters.coverage-output>>

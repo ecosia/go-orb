@@ -163,13 +163,14 @@ jobs:
       - go/mod-download
       - go/save-cache:
           key: "integration"
+      - run: mkdir _results/
       - go/test:
           packages: $(go list ./... | grep -v /service)
           json: true
           file-output: test-output.json
       - go/create-junit-xml:
-          junit-output: /tmp/results/unit-tests.xml
+          junit-output: ./_results/unit-tests.xml
       - store_artifacts:
-          path: /tmp/results/
+          path: ./_results/
       - store_test_results:
-          path: /tmp/results/
+          path: ./_results/

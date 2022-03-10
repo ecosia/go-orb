@@ -161,7 +161,15 @@ jobs:
       - go/load-cache:
           key: "integration"
       - go/mod-download
-      - go/test:
-          packages: $(go list ./... | grep -v /service)
       - go/save-cache:
           key: "integration"
+      - go/test:
+          packages: $(go list ./... | grep -v /service)
+          json: true
+          file-output: test-output.json
+      - go/create-junit-xml:
+          junit-output: /tmp/results/unit-tests.xml
+      - store_artifacts:
+          path: /tmp/results/
+      - store_test_results:
+          path: /tmp/results/

@@ -51,17 +51,12 @@ parameters:
       Apply coverage analysis in each test to packages matching the patterns.
       (Sets -cover.)
     type: string
-    default: "./..."
+    default: ""
   module-path:
     description: |
       Use a different path for the go module.
     type: string
     default: "."
-  skip-packages:
-    description: |
-      Disable testing certain packages. You can use a grep regex here.
-    type: string
-    default: ""
   cover:
     description: |
       Enable cover without specifying cover packages. Will use the same as the tested packages.
@@ -71,6 +66,7 @@ steps:
   - run:
       command: >-
         go test
+        <<parameters.packages>>
         <<# parameters.race >>-race<</ parameters.race >>
         -count=<<parameters.count>>
         -coverprofile=<<parameters.coverprofile>>
@@ -79,7 +75,23 @@ steps:
         -p <<parameters.parallel>>
         -covermode=<<parameters.covermode>>
         <<# parameters.verbose >>-v<</ parameters.verbose >>
-        $(go list <<parameters.packages>> <<# parameters.skip-packages >>| grep -v <<parameters.skip-packages >><</ parameters.skip-packages >>)
         <<# parameters.cover>>-cover<</ parameters.cover>>
-        -coverpkg=<<parameters.coverpkg>>
+        <<# parameters.coverpkg>>-coverpkg=<<parameters.coverpkg>><</ parameters.coverpkg>>
       name: "go test"
+
+
+##! /usr/bin/env bash
+#set -eu
+#
+#CODE_COVERAGE_THRESHOLD=$1
+## We need to prevent shellcheck SC2046 because go test requires String splitting.
+## Read here https://github.com/koalaman/shellcheck/wiki/SC2046
+## shellcheck disable=SC2046
+#go test $(go list ./... | grep -v /proto) -cover -race -coverprofile cover.out
+#TOTAL_COVERAGE=$(go tool cover -func cover.out | grep total: | awk '{printf "%d", substr($3, 1, length($3)-1)}')
+#if [ "$TOTAL_COVERAGE" -lt "$CODE_COVERAGE_THRESHOLD" ]; then
+#    echo "Code coverage below threshold. Threshold for this project is $CODE_COVERAGE_THRESHOLD, the returned total coverage was $TOTAL_COVERAGE."
+#    exit 1
+#else
+#    echo "Total service coverage: $TOTAL_COVERAGE%, passes threshold."
+#fi

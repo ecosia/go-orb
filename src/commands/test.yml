@@ -80,5 +80,6 @@ steps:
         -covermode=<<parameters.covermode>>
         <<# parameters.verbose >>-v<</ parameters.verbose >>
         $(go list <<parameters.packages>> <<# parameters.skip-packages >>| grep -v <<parameters.skip-packages >><</ parameters.skip-packages >>)
+        <<# parameters.cover>>-cover<</ parameters.cover>>
         -coverpkg=<<parameters.coverpkg>>
       name: "go test"

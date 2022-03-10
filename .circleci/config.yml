@@ -157,7 +157,7 @@ jobs:
     steps:
       - run:
           name: "Check out sample project."
-          command: git clone https://github.com/pbabbicola/circleci-demo-go.git ~/project
+          command: git clone https://github.com/CircleCI-Public/circleci-demo-go.git ~/project
       - go/load-cache:
           key: "integration"
       - go/mod-download

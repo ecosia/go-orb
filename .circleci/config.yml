@@ -163,7 +163,7 @@ jobs:
       - go/mod-download
       - go/save-cache:
           key: "integration"
-      - run: mkdir _results/
+      - run: mkdir ./_results/
       - go/test:
           packages: $(go list ./... | grep -v /service)
           json: true

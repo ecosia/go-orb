@@ -11,6 +11,6 @@ parameters:
     default: "unit-tests.xml"
 steps:
   - run:
-      name: "create Junit XML"
+      name: "Create Junit XML"
       command: >-
         gotestsum --junitfile <<parameters.junit-output>> --raw-command -- cat <<parameters.test-results>>

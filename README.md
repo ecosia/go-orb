@@ -1,4 +1,4 @@
-# Go (Golang) Orb [![CircleCI Build Status](https://circleci.com/gh/CircleCI-Public/go-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/CircleCI-Public/go-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/ecosia/go.svg)][reg-page] [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/CircleCI-Public/go-orb/blob/master/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
+# Go (Golang) Orb [![CircleCI Build Status](https://circleci.com/gh/ecosia/go-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/ecosia/go-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/ecosia/go.svg)][reg-page] [![GitHub License](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/ecosia/go-orb/blob/main/LICENSE) [![CircleCI Community](https://img.shields.io/badge/community-CircleCI%20Discuss-343434.svg)](https://discuss.circleci.com/c/ecosystem/orbs)
 
 A Go Orb for CircleCI.
 This orb allows you to do common Go related tasks on CircleCI such as install Go, downloading modules, caching, etc.
@@ -14,7 +14,7 @@ Example usage as well as a list of available executors, commands, and jobs are a
 
 ## Contributing
 
-We welcome [issues](https://github.com/CircleCI-Public/go-orb/issues) and [pull requests](https://github.com/CircleCI-Public/go-orb/pulls) against this repository!
+We welcome [issues](https://github.com/ecosia/go-orb/issues) and [pull requests](https://github.com/ecosia/go-orb/pulls) against this repository!
 For further questions/comments about this or other orbs, visit the Orb Category of [CircleCI Discuss](https://discuss.circleci.com/c/orbs).
 
 ### Publishing

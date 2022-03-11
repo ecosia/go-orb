@@ -11,6 +11,6 @@ parameters:
     default: "coverage.html"
 steps:
   - run:
-      name: "create Junit XML"
+      name: "Create HTML coverage report"
       command: >-
         go tool cover -html=<<parameters.coverage-results>> -o <<parameters.coverage-output>>

@@ -14,3 +14,4 @@ steps:
       name: "Create Junit XML"
       command: >-
         gotestsum --junitfile <<parameters.junit-output>> --raw-command -- cat <<parameters.test-results>>
+      when: always

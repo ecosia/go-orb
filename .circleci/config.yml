@@ -47,7 +47,6 @@ workflows:
       - int-test-vm-linux
       - int-test-dirty-cache
       - int-test-generate-reports
-      - int-test-generate-reports-failure
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -68,7 +67,6 @@ workflows:
             - int-test-vm-linux
             - int-test-dirty-cache
             - int-test-generate-reports
-            - int-test-generate-reports-failure
           filters:
             branches:
               only: main
@@ -168,33 +166,6 @@ jobs:
           packages: $(go list ./... | grep -v /service)
           json: true
           file-output: test-output.json
-      - go/create-junit-xml:
-          junit-output: ./_results/unit-tests.xml
-      - go/create-coverage-report:
-          coverage-output: ./_results/coverage.html
-      - store_artifacts:
-          path: ./_results/
-      - store_test_results:
-          path: ./_results/
-  int-test-generate-reports-failure:
-    executor:
-      name: go/default
-      tag: "1.13"
-    steps:
-      - run:
-          name: "Check out sample project."
-          command: git clone https://github.com/CircleCI-Public/circleci-demo-go.git ~/project
-      - go/load-cache:
-          key: "integration"
-      - go/mod-download
-      - go/save-cache:
-          key: "integration"
-      - run: mkdir ./_results/
-      - go/test:
-          packages: $(go list ./... | grep -v /service)
-          json: true
-          file-output: test-output.json
-      - run: exit 1
       - go/create-junit-xml:
           junit-output: ./_results/unit-tests.xml
       - go/create-coverage-report:

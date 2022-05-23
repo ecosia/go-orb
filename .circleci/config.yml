@@ -46,7 +46,7 @@ workflows:
       - int-test-macos-executor
       - int-test-vm-linux
       - int-test-dirty-cache
-      - int-test-skip-tests
+      - int-test-generate-reports
 
       # publish a semver version of the orb. relies on
       # the commit subject containing the text "[semver:patch|minor|major|skip]"
@@ -66,7 +66,7 @@ workflows:
             - int-test-macos-executor
             - int-test-vm-linux
             - int-test-dirty-cache
-            - int-test-skip-tests
+            - int-test-generate-reports
           filters:
             branches:
               only: main
@@ -148,7 +148,7 @@ jobs:
       - go/install:
           version: 1.16.4
       - run: go version && go build ./...
-  int-test-skip-tests:
+  int-test-generate-reports:
     executor:
       name: go/default
       tag: "1.13"

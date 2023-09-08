@@ -124,6 +124,7 @@ jobs:
       - go/test:
           packages: $(go list ./... | grep -v /service)
           json: true
+          covermode: atomic
           file-output: test-output.json
       - go/create-junit-xml:
           junit-output: ./_results/unit-tests.xml

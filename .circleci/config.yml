@@ -15,6 +15,9 @@ workflows:
           filters: *filters
       - orb-tools/pack:
           filters: *filters
+      # - orb-tools/review:
+      #     filters: *filters
+      # TODO(pbabbicola): Readd review when we have time to adjust the commands!
       - shellcheck/check:
           filters: *filters
       - orb-tools/publish:
